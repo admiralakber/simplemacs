@@ -1,5 +1,6 @@
 # ignore everything
 *
+
 # git stuff
 !.gitignore
 !LICENCE
@@ -8,6 +9,7 @@
 !init.el
 
 # simplemacs modules
+!modules/
 !modules/package.org
 !modules/aesthetics.org
 !modules/notmuch.org

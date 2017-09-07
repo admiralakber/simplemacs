@@ -1,0 +1,121 @@
+#+TITLE: aesthetics: My taste
+#+AUTHOR: Aqeel Akber
+
+* Minimalism
+
+All of the menus can be accessed by =C-click= be it right, left, or
+middle.
+
+#+BEGIN_SRC emacs-lisp
+  (menu-bar-mode -1)
+#+END_SRC
+
+You can scroll without a scrollbar, just use your mouse wheel /
+toucpad.
+
+#+BEGIN_SRC emacs-lisp
+  (scroll-bar-mode -1)
+#+END_SRC
+
+The toolbar is disgusting and serves literally no purpose after using
+emacs for more than 10 minutes. 
+
+#+BEGIN_SRC emacs-lisp
+  (tool-bar-mode -1)
+#+END_SRC
+
+I don't need to be welcomed to emacs, just give me somewhere to type.
+
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-startup-message t)
+#+END_SRC
+
+* Colour theme
+
+I like =base16-theme='s 3024 because of it's pure black background
+that looks stunning on my OLED screen, and also saves battery.
+
+#+BEGIN_SRC emacs-lisp
+  (load-theme 'base16-3024 t)
+#+END_SRC
+
+I like to have the fringes of my emacs buffers to be really thin, this
+can be achieved with:
+
+#+BEGIN_SRC emacs-lisp
+  (fringe-mode -1)
+#+END_SRC
+
+* Line highlighting
+
+Line highligthing is an absolute must! 
+
+#+BEGIN_SRC emacs-lisp
+  (global-hl-line-mode t)
+#+END_SRC
+
+* Line numbering
+
+Line numbering can be very slow in large files, but most of the time I
+find it very useful. Until I find a better solution, it stays on
+everywhere:
+
+#+BEGIN_SRC emacs-lisp
+  (global-linum-mode t)
+#+END_SRC
+
+Line numbering causes the fringe to grow in size as it moves into
+double, triple, quadruple digits, etc. I usually work on files with
+<1000 lines. I force the fringe size to remain 'static' most of the
+time by setting the format of the line numbering as follows:
+
+#+BEGIN_SRC emacs-lisp
+  (setq linum-format "%3d ")
+#+END_SRC
+
+Finally, I set the line numbering background colour to be the same as
+the body's, in this case it's black. 
+
+#+BEGIN_SRC emacs-lisp
+  (set-face-background 'linum "#000")
+#+END_SRC
+
+* Mode line
+I usually am on a laptop, I hide my status bar to avoid burn in, I
+usually have emacs open. It's useful to know how much battery I have
+left.
+
+#+BEGIN_SRC emacs-lisp
+  (display-battery-mode t)
+#+END_SRC
+
+* Backup settings
+
+Aethestics is more than just theming.
+
+The OpenVMS operating system has a nicety about it, simple version
+controlling by keeping backups. I like this. Emacs can emulate this
+functionality. Disk is cheap and text files are small, I'm okay with
+this.
+
+#+BEGIN_SRC emacs-lisp
+  (setq version-control t        ;; OpenVMS-esque
+        backup-by-copying t      ;; Copy-on-write-esque
+        kept-new-versions 64     ;; Indeliable-ink-esque
+        kept-old-versions 0      ;; 
+        delete-old-versions nil  ;; 
+        )
+#+END_SRC
+
+I don't like my folders cluttered with =*~= files, but I do like
+having backups with the file. My solution is to save the files in
+$(pwd)/.bak
+
+#+BEGIN_SRC emacs-lisp
+  (setq backup-directory-alist   ;; Save backups in $(pwd)/.bak
+        '(("." . ".bak"))        ;;
+        )
+#+END_SRC
+
+Now I know if I want to roll back to a previous version of a file I
+can just look for it in the .bak folder where the file is.

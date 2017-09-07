@@ -1,0 +1,36 @@
+#+TITLE: irony: C/C++ minor mode providing clang niceties
+#+AUTHOR: Aqeel Akber
+
+* irony
+
+=irony= exposes =libclang= using a client / server interface. The
+server binary written in C++, =irony-server=, runs in the background
+and doesn't lock up emacs when it's working. 
+
+It has plenty of nice things built ontop of it.
+
+Git: https://github.com/Sarcasm/irony-mode
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'objc-mode-hook 'irony-mode)
+#+END_SRC
+
+** Compile database
+
+=irony= requires a compile database for your project to work. The
+executable =irony-cdb= tries to do this automagically. It's
+recommended to hook this process to =irony-mode=.
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+#+END_SRC
+
+For clarity, if you wanted to make one of these databases manually
+using =cmake= you could execute the following command in your projects
+directory in shell.
+
+#+BEGIN_SRC shell
+  cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+#+END_SRC

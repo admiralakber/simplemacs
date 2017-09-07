@@ -1,0 +1,35 @@
+#+TITLE: flycheck: Get the computer proof reading
+#+AUTHOR: Aqeel Akber
+
+* flycheck
+=flycheck= is a modern drop in replacement for emacs =flymake=. It's
+faster, more memory efficient, supports more languages, and has a
+great project culture.
+
+I say that this is doing proof reading because you can use linters to
+provide style warnings, as well as whether your code will compile or
+not.
+
+Web: http://www.flycheck.org/en/latest/
+Git: https://github.com/flycheck/flycheck
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+#+END_SRC
+
+* C/C++ checking with =flycheck-irony=
+
+Git: https://github.com/Sarcasm/flycheck-irony
+
+The =flycheck-irony= checker is faster than the inbuilt =clang= or
+=gcc= checkers with flycheck for the same reasons as described in [[file:company.org::*C/C%2B%2B%20completion%20with%20%3Dcompany-irony%3D][
+C/C++ completion with =company-irony=]].
+
+#+BEGIN_SRC emacs-lisp
+  (package-install 'flycheck-irony)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'flycheck
+    '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+#+END_SRC

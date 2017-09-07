@@ -1,0 +1,203 @@
+#+TITLE: notmuch: Email in Emacs
+#+AUTHOR: Aqeel Akber
+
+* notmuch
+
+=notmuch= is essentially an an indexer / fast search for
+Maildir. Notmuch comes with an emacs interface that provides a fast,
+powerful tool to wrangle your email accounts.
+
+I have installed this using my distributions package manager. It
+provides a system wide emacs package.
+
+Web: https://notmuchmail.org/
+
+#+BEGIN_SRC emacs-lisp
+(require 'notmuch)
+#+END_SRC
+
+May as well let emacs =message-mode= know where the notmuch base dir
+is.
+
+#+BEGIN_SRC emacs-lisp
+(setq message-directory "~/.mail/")
+#+END_SRC
+
+** Hello screen
+
+The hello screen is the first thing you see when you =M-x notmuch=.
+
+I like to remove the logo because it makes line 1 fat. 
+
+#+BEGIN_SRC emacs-lisp
+(setq notmuch-show-logo nil)
+#+END_SRC
+
+* Sending emails
+
+Notmuch does not send email, instead it leverages =message-mode= to
+call an external program. This requires configuration to make
+everything play nice.
+
+** Calling msmtp
+
+I prefer not to have to tell emacs specifically to use msmtp. Rather,
+I set up my operating system so that it is an alias for sendmail. This
+generally means easier configuration across the board as many programs
+know about sendmail, including emacs.
+
+All I have to do is tell emacs to use the operating systems "sendmail"
+package i.e:
+
+#+BEGIN_SRC emacs-lisp
+(setq sendmail-function 'sendmail-send-it)
+#+END_SRC
+
+*Note: look into feedmail-send-it and the feedmail package for queuing*
+
+*** Choosing the correct outgoing smtp account
+
+As of version 1.4.31, msmtp is smart enough to know what one of your
+SMTP accounts to send the mail via by reading the *From:* address of
+the email envelope. 
+[[[https://www.emacswiki.org/emacs/GnusMSMTP][Ref, Emacs Wiki GnusMSMTP, 2017-06-23]]]
+
+To take advantage of this you need make sure emacs doesn't try to
+specify what account to use itself and ask msmtp to do its magic i.e:
+
+#+BEGIN_SRC emacs-lisp
+(setq message-sendmail-f-is-evil 't)
+(setq message-sendmail-extra-arguments '("--read-envelope-from"))
+#+END_SRC
+
+According to [[[https://notmuchmail.org/emacstips/][Ref, Notmuch Emacs Tips, 2017-06-23]]] the following
+variables may also need to be set.
+
+#+BEGIN_SRC emacs-lisp
+(setq mail-specify-envelope-from 't)
+(setq mail-envelope-from 'header)
+(setq message-sendmail-envelope-from 'header)
+#+END_SRC
+
+*Note: Reading the documentation on =mail-specify-envelope-from=
+suggests that if feedmail is used a different variable must be set*
+
+** Fixing i-did-not-set--mail-host-address--so-tickle-me
+
+If you don't set the emacs variable =mail-host-address=, emacs adds
+the above into the Message-ID of the email. 
+[[[https://forums.gentoo.org/viewtopic-t-916898-start-0.html][Ref, username: Moriah, Gentoo Forums, 2012-03-12]]]
+
+Ideally, I would think this would change depending on what outgoing
+smtp server I'm using. Next best thing is my personal domain I
+suppose.
+
+#+BEGIN_SRC emacs-lisp
+(setq mail-host-address "aqeelakber.com")
+#+END_SRC
+
+While we're here, we may as well set the other emacs email things to
+something sane even though we shouldn't be using them when calling
+=message-mode= via =notmuch=.
+
+#+BEGIN_SRC emacs-lisp
+(setq user-full-name "Aqeel Akber")
+;;(setq user-mail-address "aqeel.akber@gmail.com")
+#+END_SRC
+
+* Writing emails
+** Always show Cc and Bcc options
+
+I use the carbon copy (Cc) feature of email to make people aware of
+conversations that don't necessarily need to take action. Similarly
+with blind carbon copy (Bcc) but sneakily and beats forwarding. 
+
+#+BEGIN_SRC emacs-lisp
+(setq message-default-mail-headers "Cc: \nBcc: \n")
+#+END_SRC
+
+** Save sent mail in folder depending on account from
+
+The =notmuch= =message-mode= interface is able to set an Fcc header
+option depending on the *From:* address. It does so by matching in the
+following list:
+
+#+BEGIN_SRC emacs-lisp
+(setq notmuch-fcc-dirs '(("aqeel.akber@gmail.com" . "gmail/Sent")
+			("aqeel.akber@saferadiation.com" . "saferad/Sent")
+			("aqeel.akber@anu.edu.au" . "anu/Sent")))
+#+END_SRC
+
+*Note: You can add/remove tags by using +tag1 -tag2 after the folder*
+
+I can't think of any useful tags to put on all sent mail. It is easy
+enough to search for email from myself if I want to only look at my
+sent.
+
+** Prompt from what account when composing a new message
+
+This is not taken into account when replying to a message, because in
+that case the From: header is already filled in by notmuch.
+
+#+BEGIN_SRC emacs-lisp
+(setq notmuch-always-prompt-for-sender 't)
+#+END_SRC
+** Signing / Encrypting emails
+From notmuch emacs tips and tricks:
+
+Messages can by signed using gpg by invoking =M-x
+mml-secure-sign-pgpmime= (or =M-x mml-secure-encrypt-pgpmime=). 
+
+These functions are available via the standard message-mode
+keybindings =C-c C-m s p= and =C-c C-m c p=. To sign outgoing mail by
+default, use the message-setup-hook in your .emacs file:
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
+#+END_SRC
+
+This inserts the required <#part sign=pgpmime> into the beginning of
+the mail text body and will be converted into a pgp signature when
+sending (so one can just manually delete that line if signing is not
+required).
+
+Alternatively, you may prefer to use mml-secure-message-sign-pgpmime
+instead of mml-secure-sign-pgpmime to sign the whole message instead
+of just one part.
+
+* Viewing emails
+** Deleting emails
+
+Sometimes it's just better to throw stuff away e.g. there's no point
+having well expired promotional emails taking up precious SSD
+space. 
+
+However, not much doesn't actually delete emails but tags them with
+"deleted" for managing later.
+
+#+BEGIN_SRC emacs-lisp
+(define-key notmuch-show-mode-map "d"
+  (lambda ()
+    (interactive)
+    (notmuch-show-tag "+deleted")))
+#+END_SRC
+
+To actually delete the files from disk run the following in shell.
+
+#+BEGIN_SRC 
+notmuch search --output=files tag:deleted | xargs -l rm
+#+END_SRC
+** Reading encrypted and signed emails
+From the notmuch emacs tips and tricks.
+
+Encrypted and signed mime messages can be read and verified with:
+
+#+BEGIN_SRC emacs-lisp
+(setq notmuch-crypto-process-mime t)
+#+END_SRC
+
+Decrypting or verifying inline pgp messages can be done by selecting an the inline pgp area and and using:
+
+#+BEGIN_SRC  emacs-list
+M-x epa-decrypt-region RET
+#+END_SRC
