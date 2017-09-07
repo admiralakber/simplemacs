@@ -1,11 +1,18 @@
-# Compiled
-*.elc
+# ignore everything
+*
+# git stuff
+!.gitignore
+!LICENCE
 
-# Packaging
-.cask
+# simplemacs init
+!init.el
 
-# Backup files
-*~
-
-# Undo-tree save-files
-*.~undo-tree
+# simplemacs modules
+!modules/package.org
+!modules/aesthetics.org
+!modules/notmuch.org
+!modules/helm.org
+!modules/company.org
+!modules/yasnippet.org
+!modules/flycheck.org
+!modules/irony.org
