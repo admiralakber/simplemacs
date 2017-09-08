@@ -4,6 +4,7 @@
 # git stuff
 !.gitignore
 !LICENCE
+!README.org
 
 # simplemacs init
 !init.el

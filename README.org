@@ -1,0 +1,52 @@
+#+TITLE: simplemacs, nothing complex.
+#+AUTHOR: Aqeel Akber <aqeel.akber@gmail.com>
+
+* Introduction
+
+Simplemacs is the configuration you give your keen newbie hacker friend
+when introducing them the wonderful world of emacs.
+
+Simplemacs is the configuration you use when you just want to GTD.
+
+Ugh, yet another emacs configuration I hear you say, and yes I can't
+deny that. Let me place this one relative to others with a table:
+
+#+CAPTION: Where simplemacs sits relative to other emacs configurations
+|       | Simple              | Complex                |
+| Neat  | [[https://github.com/admiralakber/simplemacs][simplemacs]]          | [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]], [[http://spacemacs.org/][spacemacs]] |
+| Messy | old mate's dotfiles | [[https://www.emacswiki.org/emacs/DotEmacsBankruptcy][.emacs bankrupt]]        |
+
+It's basically old mate's dotfiles, where old mate is obsessive about
+neat code, loves =org-mode=, and minimalism. The entire repository
+should be self documenting, and concise, have a browse.
+
+* Quick start
+
+*Step zero*
+
+Install [[https://www.gnu.org/software/emacs/][emacs]] version > 24.4
+
+*Step one*
+
+Back up your existing stuff and clone it in.
+
+#+BEGIN_SRC bash
+mv ~/.emacs.d ~/.emacs.d.bak
+git clone https://github.com/admiralakber/simplemacs ~/.emacs.d
+#+END_SRC
+
+*Step two*
+
+You probably want to comment out loading =notmuch= in [[file:init.el]]
+disabling email in emacs.
+
+If you do want to use =notmuch= in emacs, be sure to edit
+[[file:modules/notmuch.org]].
+
+*Step three*
+
+Run =emacs=.
+
+* Contributing ♥
+
+Be kind. Make issues / forks. Pull requests encouraged!
