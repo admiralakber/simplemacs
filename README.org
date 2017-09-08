@@ -12,13 +12,13 @@ Ugh, yet another emacs configuration I hear you say, and yes I can't
 deny that. Let me place this one relative to others with a table:
 
 #+CAPTION: Where simplemacs sits relative to other emacs configurations
-|       | Simple              | Complex                |
+|       | Small / Simple      | Large / Complex        |
 | Neat  | [[https://github.com/admiralakber/simplemacs][simplemacs]]          | [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]], [[http://spacemacs.org/][spacemacs]] |
 | Messy | old mate's dotfiles | [[https://www.emacswiki.org/emacs/DotEmacsBankruptcy][.emacs bankrupt]]        |
 
 It's basically old mate's dotfiles, where old mate is obsessive about
 neat code, loves =org-mode=, and minimalism. The entire repository
-should be self documenting, and concise, have a browse.
+should be self documenting, and concise. Have a browse!
 
 * Quick start
 
@@ -49,4 +49,7 @@ Run =emacs=.
 
 * Contributing ♥
 
-Be kind. Make issues / forks. Pull requests encouraged!
+Be kind. Make issues / forks. Pull requests encouraged, even if it's
+just removing whitespaces or fixing grammar.
+
+
