@@ -45,7 +45,10 @@ If you do want to use =notmuch= in emacs, be sure to edit
 
 *Step three*
 
-Run =emacs=.
+Run =emacs=. 
+
+If it doesn't work, try run =M-x list-packages= to update the cache,
+and open =emacs= again.
 
 * Contributing ♥
 

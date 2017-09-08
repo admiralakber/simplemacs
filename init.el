@@ -4,10 +4,10 @@
 
 ;; package: Emacs Package Manager
 ;; ------------------------------------------------------------------------
-(package-initialize)
 (org-babel-load-file (expand-file-name
 		      "~/.emacs.d/modules/package.org"
 		      user-emacs-directory))
+(package-initialize)
 
 ;; aesthetics: My taste
 ;; ------------------------------------------------------------------------
