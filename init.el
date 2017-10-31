@@ -17,9 +17,9 @@
 
 ;; notmuch: Email in Emacs
 ;; ------------------------------------------------------------------------
-(org-babel-load-file (expand-file-name
-		      "~/.emacs.d/modules/notmuch.org"
-		      user-emacs-directory))
+;(org-babel-load-file (expand-file-name
+;		      "~/.emacs.d/modules/notmuch.org"
+;		      user-emacs-directory))
 
 ;; helm: Indescribably awesome
 ;; ------------------------------------------------------------------------
@@ -60,7 +60,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (irony flycheck company yasnippet tablist helm flycheck-irony company-irony base16-theme))))
+    (irony flycheck company yasnippet helm flycheck-irony company-irony cmake-font-lock base16-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

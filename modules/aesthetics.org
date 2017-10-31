@@ -54,6 +54,31 @@ Line highligthing is an absolute must!
   (global-hl-line-mode t)
 #+END_SRC
 
+** Bracket region highlighting
+
+An extension of line highlighting is to highlight the region encased
+by brackets when the cursor is at one. This is given by
+=show-paren-mode= in expression mode. The negative priority is so that
+the highlighting is overriden by region marking.
+
+#+BEGIN_SRC emacs-lisp
+  (show-paren-mode t)
+  (setq show-paren-delay 0)
+  (setq show-paren-style 'expression)
+  ;;(setq show-paren-priority -50)
+#+END_SRC
+
+Now we need to set the face colour of backet region highlighting.  Use
+=M-x list-faces-display= to find the colour of your =hl-line=. Do it
+relative to this, but ultimately it's your taste.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'paren)
+  (set-face-background 'show-paren-match "#b4b4b4")
+  (set-face-foreground 'show-paren-match "#000000")
+  (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
+#+END_SRC
+
 * Line numbering
 
 Line numbering can be very slow in large files, but most of the time I

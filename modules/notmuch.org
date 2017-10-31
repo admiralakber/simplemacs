@@ -50,7 +50,8 @@ All I have to do is tell emacs to use the operating systems "sendmail"
 package i.e:
 
 #+BEGIN_SRC emacs-lisp
-(setq sendmail-function 'sendmail-send-it)
+;;(setq sendmail-function 'sendmail-send-it)
+(setq send-mail-function 'sendmail-send-it)
 #+END_SRC
 
 *Note: look into feedmail-send-it and the feedmail package for queuing*

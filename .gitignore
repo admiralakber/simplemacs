@@ -19,3 +19,6 @@
 !modules/yasnippet.org
 !modules/flycheck.org
 !modules/irony.org
+
+# helpers
+!emc

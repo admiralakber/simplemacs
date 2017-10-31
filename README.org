@@ -37,11 +37,8 @@ git clone https://github.com/admiralakber/simplemacs ~/.emacs.d
 
 *Step two*
 
-You probably want to comment out loading =notmuch= in [[file:init.el]]
-disabling email in emacs.
-
-If you do want to use =notmuch= in emacs, be sure to edit
-[[file:modules/notmuch.org]].
+If you want to use =notmuch= in emacs, be sure to edit
+[[file:modules/notmuch.org]] and uncomment the region in [[file:init.el]]
 
 *Step three*
 
@@ -49,6 +46,13 @@ Run =emacs=.
 
 If it doesn't work, try run =M-x list-packages= to update the cache,
 and open =emacs= again.
+
+*(Optional) Step four*
+
+Install the included helper script =emc= into your =$PATH=.
+
+You can then call this to use emacs in client / daemon mode
+transparently.
 
 * The so called "modules" outline
 
