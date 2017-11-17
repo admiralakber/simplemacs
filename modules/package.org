@@ -33,9 +33,7 @@ plugin in the configuration for its base package. For example,
 #+BEGIN_SRC emacs-lisp
   (setq my-package-list '(base16-theme
                           company
-                          company-irony
                           flycheck
-                          flycheck-irony
                           helm
                           irony
                           yasnippet))
