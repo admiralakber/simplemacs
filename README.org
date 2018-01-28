@@ -54,23 +54,32 @@ Install the included helper script =emc= into your =$PATH=.
 You can then call this to use emacs in client / daemon mode
 transparently.
 
-* The so called "modules" outline
+* The so called "modules"
 
 Simplemacs makes no attempt to create a unified configuration wrapper
 or anything like that. It's emacs configuration by the [[https://en.wikipedia.org/wiki/Unix_philosophy][UNIX
 Philosophy]], find the appropriate file for the package and edit it
 yourself.
 
+| File                        | Requires | Notes                    |
+| [[file:init.el]]                | None     | Start here               |
+| [[file:modules/package.org]]    | None     | Package management       |
+| [[file:modules/aesthetics.org]] | None     | Theme to your taste here |
+| [[file:modules/notmuch.org]]    | [[https://notmuchmail.org/][notmuch]]  | Email (edit me!)         |
+| [[file:modules/helm.org]]       | None     | Minibuffer completion    |
+| [[file:modules/company.org]]    | None     | Buffer completion        |
+| [[file:modules/yasnippet.org]]  | None     | Quick templates          |
+| [[file:modules/flyspell.org]]   | None     | Spell checking           |
+| [[file:modules/flycheck.org]]   | None     | Syntax / Style checking  |
 
-| File                        | Requires           | Notes                    |
-| [[file:modules/package.org]]    | None               | Start here               |
-| [[file:modules/aesthetics.org]] | None               | Theme to your taste here |
-| [[file:modules/notmuch.org]]    | [[https://notmuchmail.org/][notmuch]]            | Email (edit me!)         |
-| [[file:modules/helm.org]]       | None               | Minibuffer completion    |
-| [[file:modules/company.org]]    | (Optional) =irony= | Buffer completion        |
-| [[file:modules/yasnippet.org]]  | None               | Quick templates          |
-| [[file:modules/flycheck.org]]   | (Optional) =irony= | Syntax / Style checking  |
-| [[file:modules/irony.org]]      | [[https://clang.llvm.org][clang]]              | C/C++ niceties           |
+** The so called "activities"
+
+I have extended the modules outline to include "activities". This is
+for activity specific configuration. 
+
+| File                                    | Requires | Notes       |
+| [[file:modules/activities/programming.org]] | None     | Minor modes |
+
 
 * Contributing ♥
 

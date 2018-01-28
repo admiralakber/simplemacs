@@ -1,12 +1,7 @@
-;; Aqeel Akber's Emacs (@AdmiralAkber)
+;; simplemacs -- Aqeel Akber's Emacs (@AdmiralAkber)
 ;; ------------------------------------------------------------------------
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
 (package-initialize)
-
 (require 'org)
 
 ;; package: Emacs Package Manager
@@ -23,9 +18,9 @@
 
 ;; notmuch: Email in Emacs
 ;; ------------------------------------------------------------------------
-(org-babel-load-file (expand-file-name
-		     "~/.emacs.d/modules/notmuch.org"
-		     user-emacs-directory))
+;; (org-babel-load-file (expand-file-name
+;; 		     "~/.emacs.d/modules/notmuch.org"
+;; 		     user-emacs-directory))
 
 ;; helm: Indescribably awesome
 ;; ------------------------------------------------------------------------
@@ -45,6 +40,13 @@
 		      "~/.emacs.d/modules/yasnippet.org"
 		      user-emacs-directory))
 
+
+;; flyspell: Get the computer proof reading
+;; ------------------------------------------------------------------------
+(org-babel-load-file (expand-file-name
+		      "~/.emacs.d/modules/flyspell.org"
+		      user-emacs-directory))
+
 ;; flycheck: Get the computer proof reading
 ;; ------------------------------------------------------------------------
 (org-babel-load-file (expand-file-name
@@ -52,19 +54,10 @@
 		      user-emacs-directory))
 
 
-;; Auto appended from here on
+;; activities/programming: Minor modes and tweaks
 ;; ------------------------------------------------------------------------
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (yaml-mode slack irony flycheck company yasnippet helm flycheck-irony company-irony cmake-font-lock base16-theme))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(org-babel-load-file (expand-file-name
+		      "~/.emacs.d/modules/activities/programming.org"
+		      user-emacs-directory))
+
+;;; init.el ends here
