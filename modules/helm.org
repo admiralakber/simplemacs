@@ -18,6 +18,7 @@ Git: https://github.com/emacs-helm/helm
                (("M-x"     . helm-M-x)
                 ("C-x b"   . helm-mini)
                 ("C-x C-f" . helm-find-files)
+                ("C-x C-b" . helm-buffers-list)
                 ("M-s"     . helm-occur)
                 ("M-y"     . helm-show-kill-ring)
                 ("C-h f"   . helm-apropos)
