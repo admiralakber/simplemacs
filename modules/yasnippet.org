@@ -11,9 +11,9 @@ Git: https://github.com/joaotavora/yasnippet
 
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet :ensure t
-               :defer t
-               :init
-               (yas-global-mode t)
-               )
+    :defer t
+    :init
+    (yas-global-mode t)
+    )
 #+END_SRC
 

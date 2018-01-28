@@ -14,31 +14,31 @@ Web: https://notmuchmail.org/
 
 #+BEGIN_SRC emacs-lisp
   (use-package notmuch
-               :init
-               (setq message-directory "~/.mail")
-               (setq send-mail-function 'sendmail-send-it)
-               ;; Send from correct email account
-               (setq message-sendmail-f-is-eval 't)
-               (setq message-sendmail-extra-arguments '("--read-envelope-from"))
-               (setq mail-specify-envelope-from 't)
-               (setq mail-envelope-from 'header)
-               (setq message-sendmail-envelope-from 'header)
-               ;; Setting proper from, fixes i-did-not-set--mail-host-address--so-tickle-me
-               (setq mail-host-address "aqeelakber.com")
-               (setq user-full-name "Aqeel Akber")
-               :config
-               (setq notmuch-show-logo nil)
-               ;; Writing email
-               (setq message-default-mail-headers "Cc: \nBcc: \n") ;; Always show BCC
-               (setq notmuch-always-prompt-for-sender 't)
-               ;; PGP Encryption
-               (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
-               (setq notmuch-crypto-process-mime t)
-               ;; Saving sent mail in folders depending on from
-               (setq notmuch-fcc-dirs '(("aqeel.akber@gmail.com" . "gmail/Sent")
-                                        ("aqeel.akber@saferadiation.com" . "saferad/Sent")
-                                        ("aqeel.akber@anu.edu.au" . "anu/Sent")))
-               )
+    :init
+    (setq message-directory "~/.mail")
+    (setq send-mail-function 'sendmail-send-it)
+    ;; Send from correct email account
+    (setq message-sendmail-f-is-eval 't)
+    (setq message-sendmail-extra-arguments '("--read-envelope-from"))
+    (setq mail-specify-envelope-from 't)
+    (setq mail-envelope-from 'header)
+    (setq message-sendmail-envelope-from 'header)
+    ;; Setting proper from, fixes i-did-not-set--mail-host-address--so-tickle-me
+    (setq mail-host-address "aqeelakber.com")
+    (setq user-full-name "Aqeel Akber")
+    :config
+    (setq notmuch-show-logo nil)
+    ;; Writing email
+    (setq message-default-mail-headers "Cc: \nBcc: \n") ;; Always show BCC
+    (setq notmuch-always-prompt-for-sender 't)
+    ;; PGP Encryption
+    (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
+    (setq notmuch-crypto-process-mime t)
+    ;; Saving sent mail in folders depending on from
+    (setq notmuch-fcc-dirs '(("aqeel.akber@gmail.com" . "gmail/Sent")
+                             ("aqeel.akber@saferadiation.com" . "saferad/Sent")
+                             ("aqeel.akber@anu.edu.au" . "anu/Sent")))
+    )
 #+END_SRC
 
 * Detailed comments

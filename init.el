@@ -4,6 +4,13 @@
 (package-initialize)
 (require 'org)
 
+;; org: The real reason to use emacs
+;; ------------------------------------------------------------------------
+(org-babel-load-file (expand-file-name
+		      "~/.emacs.d/modules/org.org"
+		      user-emacs-directory))
+
+
 ;; package: Emacs Package Manager
 ;; ------------------------------------------------------------------------
 (org-babel-load-file (expand-file-name

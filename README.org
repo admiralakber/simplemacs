@@ -63,6 +63,7 @@ yourself.
 
 | File                        | Requires | Notes                    |
 | [[file:init.el]]                | None     | Start here               |
+| [[file:modules/org.org]]        | None     | Beloved Org mode         |
 | [[file:modules/package.org]]    | None     | Package management       |
 | [[file:modules/aesthetics.org]] | None     | Theme to your taste here |
 | [[file:modules/notmuch.org]]    | [[https://notmuchmail.org/][notmuch]]  | Email (edit me!)         |
@@ -79,7 +80,6 @@ for activity specific configuration.
 
 | File                                    | Requires | Notes       |
 | [[file:modules/activities/programming.org]] | None     | Minor modes |
-
 
 * Contributing ♥
 

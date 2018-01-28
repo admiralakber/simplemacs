@@ -1,0 +1,67 @@
+#+TITLE: org-mode: the reason why we use emacs
+#+AUTHOR: Aqeel Akber
+
+* org-mode
+
+I would be lying if I said emacs was a good text editor out of the
+box. It's great when you configure it, sure, but why the hell would
+you bother doing that? Answer: Org mode. Look it up.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org :ensure t
+    :init
+    ;; Proper code blocks
+    (setq org-src-fontify-natively t)
+    (setq org-src-tab-acts-natively t)
+    ;; Babel languages
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((python  . t)
+       (sh      . t)
+       (C       . t)
+       (C++     . t)
+       (fortran . t)
+       (haskell . t)
+       (awk     . t)
+       (js      . t)
+       (R       . t)
+       (octave  . t)
+       (matlab  . t)
+       (perl    . t)
+       (gnuplot . t)
+       (latex   . t)
+       (emacs-lisp . t)))
+    ;; Agenda
+    (setq org-log-done t)
+    ;; Encoding
+    (setq org-export-coding-system 'utf-8)
+    (prefer-coding-system 'utf-8)
+    (set-charset-priority 'unicode)
+    (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+    ;; Don't allow editing of folded regions
+    (setq org-catch-invisible-edits 'error)
+    ;; Start agenda on Monday
+    (setq org-agenda-start-on-weekday 1)
+    ;; Enable indentation view, does not effect file
+    (setq org-startup-indented t)
+    ;; Attachments
+    (setq org-id-method (quote uuidgen))
+    (setq org-attach-directory "attach/")
+    :bind
+    (("\C-ca" . org-agenda)
+     ("\C-cl" . org-store-link))
+    )
+#+END_SRC
+
+** Encryption
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-crypt
+    :init
+    (setq epg-gpg-program "gpg2")
+    (org-crypt-use-before-save-magic)
+    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+    (setq org-crypt-key nil)
+    (setq auto-save-default nil) ;; Security flaw when using encryption
+    )
+#+END_SRC

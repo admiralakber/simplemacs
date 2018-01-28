@@ -2,7 +2,7 @@
 *
 
 # git stuff
-#!.gitignore
+!.gitignore
 !LICENCE
 !README.org
 

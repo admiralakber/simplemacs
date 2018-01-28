@@ -12,14 +12,14 @@ Blog: https://aqeelakber.com/2017/01/08/emacs-company-mode/
 
 #+BEGIN_SRC emacs-lisp
   (use-package company :ensure t
-               :defer t
-               :init
-               (global-company-mode t)
-               :config
-               (setq company-idle-delay 0)
-               (setq company-echo-delay 0)
-               (setq company-minimum-prefix-length 2)
-               )
+    :defer t
+    :init
+    (global-company-mode t)
+    :config
+    (setq company-idle-delay 0)
+    (setq company-echo-delay 0)
+    (setq company-minimum-prefix-length 2)
+    )
 #+END_SRC
 
 ** Fixing =yasnippet= conflict
