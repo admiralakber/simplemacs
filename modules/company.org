@@ -11,20 +11,18 @@ Git: https://github.com/company-mode/company-mode
 Blog: https://aqeelakber.com/2017/01/08/emacs-company-mode/
 
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'after-init-hook #'global-company-mode)
+  (use-package company :ensure t
+               :defer t
+               :init
+               (global-company-mode t)
+               :config
+               (setq company-idle-delay 0)
+               (setq company-echo-delay 0)
+               (setq company-minimum-prefix-length 2)
+               )
 #+END_SRC
 
-* Show me things immediately
-
-Typing quickly means there's really no point having a delay before
-showing things.
-
-#+BEGIN_SRC emacs-lisp
-  (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 2)
-#+END_SRC
-
-* Fixing =yasnippet= conflict
+** Fixing =yasnippet= conflict
 
 Pressing tab with company mode conflicts with =yasnippets=, this is
 the only fix that I found that makes everything work as expected.
@@ -54,40 +52,4 @@ the only fix that I found that makes everything work as expected.
 
 
   (global-set-key [tab] 'tab-indent-or-complete)
-#+END_SRC
-
-* Removing =company-semantic= backend
-
-So, =cedet= has this thing called =semantic=, which sounds great and
-seems really clever, but it's slow. Usually using a backend specific
-for the language you're using provides more satisfying results.
-
-#+BEGIN_SRC emacs-lisp
-  (with-eval-after-load 'company
-    '(setq company-backends (delete 'company-semantic company-backends)))
-#+END_SRC
-
-* C/C++ completion with =company-irony=
-
-#+BEGIN_SRC emacs-lisp
-  (package-install 'company-irony)
-#+END_SRC
-
-Git: https://github.com/Sarcasm/company-irony
-
-Using completion with =company-irony= is faster than using the
-=company-clang= backend. This is because =irony= is running as an
-independent server and can keep a cache in the background. For the
-authors explanation, see
-https://github.com/Sarcasm/irony-mode/issues/172
-
-Note, we want to make sure =company-clang= is not used when
-=company-irony= is available, so first we delete it from
-=company-backends= to make sure that isn't before =company-irony=
-
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
-  (with-eval-after-load 'company
-    '(setq company-backends (delete 'company-clang company-backends))
-    '(add-to-list 'company-backends '(company-irony company-clang)))
 #+END_SRC

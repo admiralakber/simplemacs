@@ -72,7 +72,6 @@ yourself.
 | [[file:modules/flycheck.org]]   | (Optional) =irony= | Syntax / Style checking  |
 | [[file:modules/irony.org]]      | [[https://clang.llvm.org][clang]]              | C/C++ niceties           |
 
-
 * Contributing ♥
 
 Be kind. Make issues / forks. Pull requests encouraged, even if it's

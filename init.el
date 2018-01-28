@@ -1,5 +1,12 @@
 ;; Aqeel Akber's Emacs (@AdmiralAkber)
 ;; ------------------------------------------------------------------------
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (require 'org)
 
 ;; package: Emacs Package Manager
@@ -7,7 +14,6 @@
 (org-babel-load-file (expand-file-name
 		      "~/.emacs.d/modules/package.org"
 		      user-emacs-directory))
-(package-initialize)
 
 ;; aesthetics: My taste
 ;; ------------------------------------------------------------------------
@@ -17,9 +23,9 @@
 
 ;; notmuch: Email in Emacs
 ;; ------------------------------------------------------------------------
-;(org-babel-load-file (expand-file-name
-;		      "~/.emacs.d/modules/notmuch.org"
-;		      user-emacs-directory))
+(org-babel-load-file (expand-file-name
+		     "~/.emacs.d/modules/notmuch.org"
+		     user-emacs-directory))
 
 ;; helm: Indescribably awesome
 ;; ------------------------------------------------------------------------
@@ -45,11 +51,6 @@
 		      "~/.emacs.d/modules/flycheck.org"
 		      user-emacs-directory))
 
-;; irony: C/C++ minor mode providing clang niceties
-;; ------------------------------------------------------------------------
-(org-babel-load-file (expand-file-name
-		      "~/.emacs.d/modules/irony.org"
-		      user-emacs-directory))
 
 ;; Auto appended from here on
 ;; ------------------------------------------------------------------------
@@ -60,7 +61,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (irony flycheck company yasnippet helm flycheck-irony company-irony cmake-font-lock base16-theme))))
+    (yaml-mode slack irony flycheck company yasnippet helm flycheck-irony company-irony cmake-font-lock base16-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

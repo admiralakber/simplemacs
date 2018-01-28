@@ -1,0 +1,29 @@
+#+TITLE: programming: Various programming minor modes
+#+AUTHOR: Aqeel Akber
+
+* CMake
+
+#+BEGIN_SRC emacs-lisp
+  (use-package cmake-font-lock :ensure t
+               :init
+               :config
+               )
+#+END_SRC
+
+* YAML
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode :ensure t
+               :init
+               :config
+               )
+#+END_SRC
+
+* Anaconda (Python)
+
+#+BEGIN_SRC emacs-lisp
+  (use-package anaconda-mode :ensure t
+               :init
+               :config
+               )
+#+END_SRC

@@ -11,14 +11,19 @@
 
 # simplemacs modules
 !modules/
-!modules/package.org
-!modules/aesthetics.org
-!modules/notmuch.org
-!modules/helm.org
-!modules/company.org
-!modules/yasnippet.org
-!modules/flycheck.org
-!modules/irony.org
+!modules/*.org
+# !modules/package.org
+# !modules/aesthetics.org
+# !modules/notmuch.org
+# !modules/helm.org
+# !modules/company.org
+# !modules/yasnippet.org
+# !modules/flycheck.org
+
+# simplemacs activities
+!modules/activities/
+!modules/activities/*.org
+#!modules/activities/*.org
 
 # helpers
 !emc

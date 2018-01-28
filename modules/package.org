@@ -17,34 +17,22 @@ The Emacs Package Manager, intialize and add the MELPA repository.
   (package-initialize)
 #+END_SRC
 
-* Base packages to install
+* Enable use-package
 
-This is where the magic happens. By adding package names to this list,
-the package manager ensures that it is installed at startup when
-running the next code block.
+Picked up this trick from [[https://github.com/pmRed/][pmRed]] - the following code block enables the
+use of the =(use-package)= function. It takes care of ensuring a
+package is installed, loads it up, and sets up settings quite
+elegantly.
 
-I only install base packages here, any plugins to these packages I
-install when configuring that package. My configuration files have the
-same name as the package name listed here. In the case where there is
-crossover between the base packages via plugins I try to setup the
-plugin in the configuration for its base package. For example,
+As usual though, my configuration files have the same name as the
+package name. If there are any plugins to a package, I try to setup
+the plugin in the configuration for its base package. For example,
 =company-irony= is configured in [[company.org]].
 
 #+BEGIN_SRC emacs-lisp
-  (setq my-package-list '(base16-theme
-                          company
-                          flycheck
-                          helm
-                          irony
-                          yasnippet))
-#+END_SRC
-
-* Install base packages
-
-This makes sure all the packages I want are installed when I start up
-emacs.
-
-#+BEGIN_SRC emacs-lisp
-  (mapc #'package-install my-package-list)
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+  (eval-when-compile (require 'use-package))
 #+END_SRC
 
