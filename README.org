@@ -63,8 +63,8 @@ yourself.
 
 | File                        | Requires | Notes                    |
 | [[file:init.el]]                | None     | Start here               |
-| [[file:modules/org.org]]        | None     | Beloved Org mode         |
 | [[file:modules/package.org]]    | None     | Package management       |
+| [[file:modules/org.org]]        | None     | Beloved Org mode         |
 | [[file:modules/aesthetics.org]] | None     | Theme to your taste here |
 | [[file:modules/notmuch.org]]    | [[https://notmuchmail.org/][notmuch]]  | Email (edit me!)         |
 | [[file:modules/helm.org]]       | None     | Minibuffer completion    |
