@@ -10,7 +10,7 @@ Web: http://joaotavora.github.io/yasnippet/
 Git: https://github.com/joaotavora/yasnippet
 
 #+BEGIN_SRC emacs-lisp
-  (use-package yassnippet :ensure t
+  (use-package yasnippet :ensure t
                :defer t
                :init
                (yas-global-mode t)
