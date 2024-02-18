@@ -36,7 +36,10 @@ I like =base16-theme='s 3024 because of it's pure black background
 that looks stunning on my OLED screen, and also saves battery.
 
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'base16-3024 t)
+  (use-package base16-theme
+   :ensure t
+   :config
+   (load-theme 'base16-3024 t))
 #+END_SRC
 
 I like to have the fringes of my emacs buffers to be really thin, this
@@ -86,7 +89,7 @@ find it very useful. Until I find a better solution, it stays on
 everywhere:
 
 #+BEGIN_SRC emacs-lisp
-  (global-linum-mode t)
+  (display-line-numbers-mode t)
 #+END_SRC
 
 Line numbering causes the fringe to grow in size as it moves into
@@ -102,7 +105,7 @@ Finally, I set the line numbering background colour to be the same as
 the body's, in this case it's black. 
 
 #+BEGIN_SRC emacs-lisp
-  (set-face-background 'linum "#000")
+  (set-face-background 'line-number "#000")
 #+END_SRC
 
 * Mode line

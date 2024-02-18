@@ -69,4 +69,3 @@
 		      user-emacs-directory))
 
 ;;; init.el ends here
-
